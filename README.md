@@ -1,16 +1,29 @@
-# barkod_projesi
+# 📱 Barkod ile Ürün İnceleme Uygulaması
 
-A new Flutter project.
+Bu proje, kullanıcıların yiyecek ve içecek ürünlerinin barkodlarını tarayarak veya manuel girerek; içerik bilgilerini, alerjen uyarılarını, besin değerlerini ve menşei bilgilerini görüntülemesini sağlayan tam kapsamlı bir mobil uygulamadır.
 
-## Getting Started
+## 🚀 Özellikler
 
-This project is a starting point for a Flutter application.
+* **🔐 Kullanıcı İşlemleri:** Kayıt Ol (Register) ve Giriş Yap (Login) özellikleri (JWT Authentication ile güvenli oturum).
+* **📸 Barkod Tarama:** Cihaz kamerasını kullanarak hızlı barkod okuma (Mobile Scanner).
+* **⌨️ Manuel Sorgulama:** Kamera kullanılamayan durumlar veya silik barkodlar için manuel numara girişi.
+* **📝 Ürün Detayları:** Taranan ürünün içindekiler, alerjenler, besin değerleri ve menşei bilgilerini detaylı görüntüleme.
+* **❤️ Favoriler:** Beğenilen ürünleri favori listesine ekleme ve çıkarma.
+* **🕒 Geçmiş:** Daha önce taranan ürünlerin otomatik olarak geçmişe kaydedilmesi ve listelenmesi.
+* **🍔 Yan Menü (Drawer):** Kolay navigasyon için modern yan menü tasarımı.
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠️ Kullanılan Teknolojiler
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Frontend (Mobil Uygulama)
+* **Framework:** Flutter (Dart)
+* **Http İstemcisi:** Dio
+* **Depolama:** Flutter Secure Storage (Token yönetimi için)
+* **Barkod Okuma:** Mobile Scanner
+* **Arayüz:** Material Design 3
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Backend (API Sunucusu)
+* **Runtime:** Node.js
+* **Framework:** Express.js
+* **Veritabanı:** Microsoft SQL Server (MSSQL)
+* **ORM:** Sequelize
+* **Kimlik Doğrulama:** JSON Web Token (JWT) & Bcryptjs
