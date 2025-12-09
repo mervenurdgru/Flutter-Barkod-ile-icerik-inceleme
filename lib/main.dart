@@ -1,12 +1,22 @@
-import 'screens/auth/login_screen.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'screens/home_screen.dart';
+import 'screens/login_screen.dart';
 import 'utils/colors.dart';
 
-// İleride buraya ekran importları gelecek
-
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
+
   runApp(const MyApp());
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -16,8 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Barkod İçerik İnceleme',
-      debugShowCheckedModeBanner: false, // Sağ üstteki "Debug" bandını kaldırır
-      // Uygulamanın Teması
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
         primaryColor: AppColors.primary,
@@ -32,11 +41,7 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
         ),
       ),
-
-      // Henüz Login ekranını yapmadığımız için geçici olarak boş bir ekran açıyoruz
-      home: const Scaffold(
-        body: Center(child: Text("Barkod Uygulaması Hazırlanıyor...")),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
