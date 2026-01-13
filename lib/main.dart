@@ -2,11 +2,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
+import 'screens/admin_login_screen.dart';
+import 'screens/admin_panel_screen.dart';
 import 'utils/colors.dart';
+import 'screens/admin_product_list_screen.dart';
+import 'screens/admin_product_add_screen.dart';
+import 'screens/admin_product_edit_screen.dart';
+import 'screens/admin_comment_list_screen.dart';
+import 'screens/admin_report_list_screen.dart';
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
-
   runApp(const MyApp());
 }
 
@@ -42,6 +48,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const HomeScreen(),
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/admin_login': (context) => const AdminLoginScreen(),
+        '/admin_panel': (context) => const AdminPanelScreen(),
+        '/admin_products': (context) => const AdminProductListScreen(),
+        '/admin_add': (context) => const AdminProductAddScreen(),
+        '/admin_comments': (context) => const AdminCommentListScreen(),
+        '/admin_reports': (context) => const AdminReportListScreen(),
+      },
     );
   }
 }

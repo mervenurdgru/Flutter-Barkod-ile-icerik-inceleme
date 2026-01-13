@@ -2,11 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthService {
-  final String baseUrl = "http://172.20.10.2:5000/api";
+  //final String baseUrl = "http://172.20.10.2:5000/api";
+  final String baseUrl = "http://192.168.1.13:5000/api";
 
   final Dio _dio = Dio();
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
+  // ✅ Kullanıcı Login
   Future<String?> login(String username, String password) async {
     try {
       final response = await _dio.post(
@@ -36,6 +38,37 @@ class AuthService {
     }
   }
 
+  // ✅ Admin Login
+  Future<String?> adminLogin(String username, String password) async {
+    try {
+      final response = await _dio.post(
+        '$baseUrl/admin/login',
+        data: {'KullaniciAdi': username, 'Sifre': password},
+      );
+
+      if (response.statusCode == 200) {
+        final token = response.data['token'];
+        if (token != null) {
+          await _storage.write(key: 'auth_token', value: token); // aynı key
+          return null;
+        } else {
+          return 'Token alınamadı.';
+        }
+      } else {
+        return 'Admin giriş başarısız.';
+      }
+    } on DioException catch (e) {
+      if (e.response != null && e.response!.data != null) {
+        return e.response!.data['message'] ??
+            'Sunucu hatası: ${e.response!.statusCode}';
+      }
+      return 'Bağlantı hatası: Lütfen internetinizi veya sunucuyu kontrol edin.';
+    } catch (e) {
+      return 'Bir hata oluştu: $e';
+    }
+  }
+
+  // ✅ Kullanıcı Register
   Future<String?> register(
     String username,
     String email,

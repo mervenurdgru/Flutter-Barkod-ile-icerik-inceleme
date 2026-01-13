@@ -2,7 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ProductService {
-  final String baseUrl = "http://172.20.10.2:5000/api";
+  //final String baseUrl = "http://172.20.10.2:5000/api";
+  final String baseUrl = "http://192.168.1.13:5000/api";
 
   final Dio _dio = Dio();
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
